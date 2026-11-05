@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Посещения</h1>
+{% if msg %}<p class="msg">{{ msg }}</p>{% endif %}
+<form method="post">
+    <select name="client_id">
+        {% for c in clients %}<option value="{{ c.id }}">{{ c.full_name }}</option>{% endfor %}
+    </select>
+    <button>Отметить визит</button>
+</form>
+<table>
+<tr><th>ID</th><th>Клиент</th><th>Дата</th></tr>
+{% for v in visits %}
+<tr><td>{{ v.id }}</td><td>{{ v.full_name }}</td><td>{{ v.visit_date }}</td></tr>
+{% endfor %}
+</table>
+{% endblock %}

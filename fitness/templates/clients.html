@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Клиенты</h1>
+<form method="get">
+    <input name="search" value="{{ search }}" placeholder="Поиск по ФИО/телефону">
+    <button>Найти</button>
+</form>
+<form method="post">
+    <input name="full_name" placeholder="ФИО" required>
+    <input name="phone" placeholder="Телефон">
+    <input name="email" placeholder="Email">
+    <button>Добавить</button>
+</form>
+<table>
+<tr><th>ID</th><th>ФИО</th><th>Телефон</th><th>Email</th></tr>
+{% for c in clients %}
+<tr><td>{{ c.id }}</td><td>{{ c.full_name }}</td><td>{{ c.phone }}</td><td>{{ c.email }}</td></tr>
+{% endfor %}
+</table>
+{% endblock %}

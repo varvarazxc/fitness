@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Абонементы</h1>
+<form method="post">
+    <select name="client_id">
+        {% for c in clients %}<option value="{{ c.id }}">{{ c.full_name }}</option>{% endfor %}
+    </select>
+    <select name="type_id">
+        {% for t in types %}<option value="{{ t.id }}">{{ t.name }} ({{ t.duration_days }} дн., {{ t.price }} руб.)</option>{% endfor %}
+    </select>
+    <input type="date" name="start_date" value="{{ '' }}" required>
+    <button>Оформить</button>
+</form>
+<table>
+<tr><th>Клиент</th><th>Тип</th><th>Начало</th><th>Конец</th><th>Статус</th></tr>
+{% for m in memberships %}
+<tr>
+    <td>{{ m.full_name }}</td><td>{{ m.name }}</td>
+    <td>{{ m.start_date }}</td><td>{{ m.end_date }}</td>
+    <td class="{{ 'active' if m.status == 'Активен' else 'inactive' }}">{{ m.status }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
